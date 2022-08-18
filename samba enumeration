@@ -1,1 +1,15 @@
+nmap to enumerate share
+ nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.251.221
+ SMB has two ports 445 and 139
+ 
+inspecting shares
+smbclient //10.10.251.221/anonymous
+ 
+Downloading SMB shares
+smbget -R smb://10.10.251.221/anonymous
+ 
+Enumerating NFS
+nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.251.221
 
+ 
+  
